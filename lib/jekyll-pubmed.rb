@@ -1,18 +1,19 @@
-require "listless/version"
+require "jekyll-pubmed/version"
 
+require 'jekyll'
 require 'json'
 require 'hash-joiner'
 require 'open-uri'
 require 'crack'
 require 'pp'
 
-module Jekyll_Get
+module Jekyll_Pubmed
   class Generator < Jekyll::Generator
     safe true
     priority :highest
 
     def generate(site)
-      config = site.config['jekyll_get']
+      config = site.config['jekyll_pubmed']
       if !config
         return
       end
