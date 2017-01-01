@@ -15,5 +15,5 @@ branches:
   only:
     - master
 install:
-- travis_retry script/bootstrap
-script: script/cibuild
+- travis_retry scripts/bootstrap
+script: scripts/cibuild
