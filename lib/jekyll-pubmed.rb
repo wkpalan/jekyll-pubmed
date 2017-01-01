@@ -23,7 +23,9 @@ module Jekyll_Pubmed
       config.each do |d|
         begin
           target = site.data[d['data']]
-          source = JSON.load(open(d['json']))
+          search_term = d['term']
+          file_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=#{search_term}&format=json"
+          source = JSON.load(open(file_url))
           if target
             HashJoiner.deep_merge target, source
           else
@@ -89,7 +91,7 @@ module Jekyll_Pubmed
       sorted_years = years.uniq.sort.reverse.to_a
       #return doc["PubmedArticleSet"]
       out_hash =  {"pmids" => sorted_pmid, "articles" => h, "years" => sorted_years}
-      pp out_hash
+      #pp out_hash
       return out_hash
     end
   end

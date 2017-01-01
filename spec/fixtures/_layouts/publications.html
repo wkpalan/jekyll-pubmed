@@ -1,0 +1,87 @@
+---
+layout: default
+---
+
+<h1>Publications</h1>
+<section class="mdl-grid pub_table">
+  {% for year in site.data.abstracts.years %}
+  <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--4-col-phone mdl-cell--middle pub_year mdl-cell--stretch">
+    <h4>{{ year }}</h4>
+  </div>
+  {% for pub_date in site.data.abstracts.pmids %}
+  {% assign pub_year =  pub_date[0] | date: "%Y" %}
+  {% if pub_year == year %}
+  {% for article in site.data.abstracts.articles %}
+  {% if article[0] == pub_date[1] %}
+  <div class="mdl-cell mdl-cell--10-col mdl-cell--4-col-phone pub_details">
+    <div class="pub_title">
+      <a  tooltip="{{article[1].title}}" class = 'dialog-link-{{pub_date[1]}}'>{{article[1].title}}</a>
+    </div>
+    <div class="authors">
+      {% for pub_author in article[1].authors %}
+      {% if pub_author contains "Wimalanathan" %}
+      <span class="bold_author">{{pub_author}}, </span>
+      {% elsif forloop.first %}
+      {{pub_author}}*,
+      {% elsif forloop.last %}
+      {{pub_author}}.
+      {% else %}
+      {{pub_author}},
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="mdl-cell mdl-cell--1-col-desktop mdl-cell--4-col mdl-cell--middle pub_link mdl-cell--stretch">
+    <a id="{{pub_date[1]}}_link" class="right-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--fab mdl-button--colored"
+    href="http://www.ncbi.nlm.nih.gov/pubmed?term={{pub_date[1]}}" target="_blank">
+    <i class="material-icons">description</i>
+  </a>
+  <div class="mdl-tooltip mdl-tooltip--large" for="{{pub_date[1]}}_link"> Go to Pubmed </div>
+</div>
+
+<dialog id="dialog-{{pub_date[1]}}" class="mdl-dialog abstract-dialog">
+  <h3 class="mdl-dialog__title">{{article[1].title}}</h3>
+  <div class="mdl-dialog__content">
+    <p>
+      {{article[1].abstract}}
+    </p>
+  </div>
+  <div class="mdl-dialog__actions">
+    <button type="button" class="mdl-button">Close</button>
+  </div>
+</dialog>
+<script>
+(function() {
+  'use strict';
+  var dialogButton = document.querySelector('.dialog-link-{{pub_date[1]}}');
+  var dialog = document.querySelector('#dialog-{{pub_date[1]}}');
+  if (! dialog.showModal) {
+    dialogPolyfill.registerDialog(dialog);
+  }
+  dialogButton.addEventListener('click', function() {
+    dialog.showModal();
+  });
+  dialog.querySelector('button:not([disabled])')
+  .addEventListener('click', function() {
+    dialog.close();
+  });
+}());
+</script>
+
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+</section>
+
+<!-- <span>
+({{ child.MedlineCitation.Article.Journal.JournalIssue.PubDate.Year }}.)
+
+{{ child.MedlineCitation.Article.Journal.ISOAbbreviation }}.
+{{ child.MedlineCitation.Article.Journal.JournalIssue.Volume }}
+{% if child.MedlineCitation.Article.Journal.JournalIssue.Issue %}
+,({{ child.MedlineCitation.Article.Journal.JournalIssue.Issue }})
+{% endif %}
+:{{child.MedlineCitation.Article.Pagination.MedlinePgn}}
+</span> -->

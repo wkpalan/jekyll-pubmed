@@ -21,25 +21,25 @@ RSpec.configure do |config|
     File.join(DEST_DIR, *files)
   end
 
-  CONFIG_DEFAULTS = {
-    "source"      => source_dir,
-    "destination" => dest_dir,
-    "gems"        => ["jekyll-pubmed"]
-  }.freeze
-
-  def make_page(options = {})
-    page      = Jekyll::Page.new(site, CONFIG_DEFAULTS["source"], "", "page.md")
-    page.data = options
-    page
-  end
-
-  def make_site(options = {})
-    site_config = Jekyll.configuration(CONFIG_DEFAULTS.merge(options))
-    Jekyll::Site.new(site_config)
-  end
-
-  def make_context(registers = {}, environments = {})
-    Liquid::Context.new(environments, {},
-      { :site => site, :page => page }.merge(registers))
-  end
+  # def make_context(registers = {}, environments = {})
+  #   Liquid::Context.new(environments, {},
+  #     { :site => site, :page => page }.merge(registers))
+  # end
 end
+
+  # CONFIG_DEFAULTS = {
+  #   "source"      => source_dir,
+  #   "destination" => dest_dir,
+  #   "gems"        => ["jekyll-pubmed"]
+  # }.freeze
+  #
+  # def make_page(options = {})
+  #   page      = Jekyll::Page.new(site, CONFIG_DEFAULTS["source"], "", "page.md")
+  #   page.data = options
+  #   page
+  # end
+  #
+  # def make_site(options = {})
+  #   site_config = Jekyll.configuration(CONFIG_DEFAULTS.merge(options))
+  #   Jekyll::Site.new(site_config)
+  # end
