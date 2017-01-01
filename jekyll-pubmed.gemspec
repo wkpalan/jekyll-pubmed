@@ -9,19 +9,19 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Gokul Wimalanathan"]
   spec.email         = ["kokulapalan@gmail.com"]
   spec.summary       = %q{A jekyll plugin to get publication details from pubmed using eutils}
+  spec.description   = %q{A jekyll plugin to get publication details from pubmed using eutils}
   spec.homepage      = "https://github.com/wkpalan/jekyll-pubmed.git"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "jekyll", "~> 2.0"
+  spec.add_dependency "jekyll", "~> 3.1"
 
   spec.add_development_dependency "bundler", "~> 1.13"
-  spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "json", "~> 10.0"
-  spec.add_development_dependency 'hash-joiner', "~> 0.0.7"
-  spec.add_development_dependency 'open-uri'
-  spec.add_development_dependency 'crack', "~> 0.4.3"
-  spec.add_development_dependency 'pp'
+  spec.add_development_dependency "rake", "~> 10"
+  spec.add_development_dependency "rspec", "~> 3.5"
+  spec.add_development_dependency 'hash-joiner', "~> 0.0"
+  #spec.add_development_dependency 'open-uri', "0"
+  spec.add_development_dependency 'crack', "~> 0.4"
 end
