@@ -7,8 +7,8 @@ require 'open-uri'
 require 'crack'
 require 'pp'
 
-module Jekyll_Pubmed
-  class Generator < Jekyll::Generator
+module Jekyll
+  class Jekyll_Pubmed < Jekyll::Generator
     safe true
     priority :highest
 
