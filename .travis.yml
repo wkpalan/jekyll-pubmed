@@ -2,7 +2,7 @@ sudo: false
 language: ruby
 cache: bundler
 rvm:
-  - 2.3
+  - 2.2
 matrix:
   include:
     - # GitHub Pages
@@ -14,3 +14,6 @@ env:
 branches:
   only:
     - master
+install:
+- travis_retry script/bootstrap
+script: script/cibuild
