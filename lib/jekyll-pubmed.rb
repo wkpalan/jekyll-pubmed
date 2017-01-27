@@ -6,6 +6,7 @@ require 'hash-joiner'
 require 'open-uri'
 require 'crack'
 require 'pp'
+require 'uri'
 
 module Jekyll
   class Jekyll_Pubmed < Jekyll::Generator
@@ -23,7 +24,7 @@ module Jekyll
       config.each do |d|
         begin
           target = site.data[d['data']]
-          search_term = d['term']
+          search_term = URI.escape(d['term'])          
           file_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=#{search_term}&format=json"
           source = JSON.load(open(file_url))
           if target

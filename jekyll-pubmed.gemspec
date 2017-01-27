@@ -22,6 +22,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10"
   spec.add_development_dependency "rspec", "~> 3.5"
   spec.add_development_dependency 'hash-joiner', "~> 0.0"
-  #spec.add_development_dependency 'open-uri', "0"
   spec.add_development_dependency 'crack', "~> 0.4"
 end
